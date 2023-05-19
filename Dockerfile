@@ -1,4 +1,4 @@
-FROM debian as BUILDER
+FROM debian as Builder
 ARG CLANG_VERSION=16.0.4
 
 WORKDIR /
@@ -12,7 +12,7 @@ RUN cmake -S llvm -B build -G Ninja -DLLVM_ENABLE_PROJECTS="clang" -DCMAKE_BUILD
 RUN cmake --build build
 
 WORKDIR /
-RUN apt-get install libboost-all-dev
+RUN apt-get install -y libboost-all-dev
 RUN git clone --recursive --depth 1 https://github.com/mikael-s-persson/templight-tools.git
 WORKDIR /templight-tools
 RUN mkdir build && cd build && cmake .. && make

@@ -7,8 +7,7 @@ RUN git clone --recursive --depth 1 --branch llvmorg-$CLANG_VERSION https://gith
 
 WORKDIR /llvm-project
 
-RUN cd clang/tools && git clone --recursive --depth 1 https://github.com/mikael-s-persson/templight.git templight && echo 
-"add_clang_subdirectory(templight)" >> CMakeLists.txt
+RUN cd clang/tools && git clone --recursive --depth 1 https://github.com/mikael-s-persson/templight.git templight && echo "add_clang_subdirectory(templight)" >> CMakeLists.txt
 RUN cmake -S llvm -B build -G Ninja -DLLVM_ENABLE_PROJECTS="clang" -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build build
 
